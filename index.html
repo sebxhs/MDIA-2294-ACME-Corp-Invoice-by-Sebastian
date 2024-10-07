@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>
+	
+	<style>
+	    thead{
+	        font-weight:bold;
+	    }
+	    
+	    td{
+	        padding-left:5px;
+	        padding-right:5px;	        
+	    }
+	    
+	    td.sub-total{
+	        text-align:right;	        
+	    }
+	</style>
+</head>
+<body>
+	<h1>MDIA 2294: ACME Corp Invoice</h1>
+	
+	<table>
+	    <thead>
+	        <tr>
+	            <td>ITEM</td>
+	            <td>DESCRIPTION</td>
+	            <td>QTY</td>
+	            <td>PRICE</td>
+	            <td>LINE TOTAL</td>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>1</td>
+	            <td><input id="line-1-description" type="text" size="40" value="Anvil" /></td>
+	            <td><input id="line-1-quantity" type="text" size="3" value="5" /></td>
+	            <td><input id="line-1-price" type="text" size="6" value="35.00" /></td>
+	            <td class="sub-total"><span id="line-1"></span></td>
+	        </tr>
+	        <tr>
+	            <td>2</td>
+	            <td><input id="line-2-description" type="text" size="40" value="Rocket Skates (each)" /></td>
+	            <td><input id="line-2-quantity" type="text" size="3" value="2" /></td>
+	            <td><input id="line-2-price" type="text" size="6" value="24.99" /></td>
+	            <td class="sub-total"><span id="line-2"></span></td>
+	        </tr>
+	        <tr>
+	            <td>3</td>
+	            <td><input id="line-3-description" type="text" size="40" value="Giant Magnet" /></td>
+	            <td><input id="line-3-quantity" type="text" size="3" value="1" /></td>
+	            <td><input id="line-3-price" type="text" size="6" value="125.50" /></td>
+	            <td class="sub-total"><span id="line-3"></span></td>
+	        </tr>
+	        <tr>
+	            <td>4</td>
+	            <td><input id="line-4-description" type="text" size="40" value="Ball bearings" /></td>
+	            <td><input id="line-4-quantity" type="text" size="3" value="1000" /></td>
+	            <td><input id="line-4-price" type="text" size="6" value="0.25" /></td>
+	            <td class="sub-total"><span id="line-4"></span></td>
+	        </tr>
+	        <tr>
+	            <td>5</td>
+	            <td><input id="line-5-description" type="text" size="40" value="Portable holes" /></td>
+	            <td><input id="line-5-quantity" type="text" size="3" value="12" /></td>
+	            <td><input id="line-5-price" type="text" size="6" value="15.25" /></td>
+	            <td class="sub-total"><span id="line-5"></span></td>
+	        </tr>
+	    </tbody>
+	    <tfoot>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">SUB TOTAL</td>  
+	            <td class="sub-total"><span id="sub-total"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">DISCOUNT</td>  
+	            <td class="sub-total"><span id="discount"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">TAX</td>  
+	            <td class="sub-total"><span id="tax"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">TOTAL</td>  
+	            <td class="sub-total" style="border-top:solid black 1px"><span id="Total"></span></td>	        
+	        </tr>
+	    </tfoot>	    
+	</table>
+	
+	<div><button id="calculate">Calculate</button></div>
+	<div>NOTE: discounts of 10% are given to orders over $250</div>
+
+	<script>
+
+		//Sebastian Quiroz Malca Alva , A01302075 , Assignment 1
+
+		//Creating a variable for the button
+
+const Calcbutton = document.querySelector("#calculate")
+
+			//Creating a function for when the button executes 
+
+	    function calculate() {
+
+				//Creating variables for the price, quantity and total for each line
+
+				const line1qty = document.querySelector("#line-1-quantity").value;
+
+				const line1price = document.querySelector("#line-1-price").value;
+
+				const line1Total = line1qty * line1price;
+
+				//rounding the total for each line to 2 decimals
+
+				let num = line1Total;
+
+				num = (Math.round(num * 100) / 100).toFixed(2);
+
+				let qty = "$" + num;
+
+				// Displaying each total for each line
+
+				document.querySelector("#line-1").innerText = qty;
+
+				//repeat
+
+				const line2qty = document.querySelector("#line-2-quantity").value;
+
+				const line2price = document.querySelector("#line-2-price").value;
+
+				const line2Total = line2qty * line2price;
+
+				let num2 = line2Total;
+
+				num2 = (Math.round(num2 * 100) / 100).toFixed(2);
+
+				let qty2 = "$" + num2;
+
+				document.querySelector("#line-2").innerText = qty2;
+
+				const line3qty = document.querySelector("#line-3-quantity").value;
+
+				const line3price = document.querySelector("#line-3-price").value;
+
+				const line3Total = line3qty * line3price;
+
+				let num3 = line3Total;
+
+				num3 = (Math.round(num3 * 100) / 100).toFixed(2);
+
+				let qty3 = "$" + num3;
+
+				document.querySelector("#line-3").innerText = qty3;
+
+				const line4qty = document.querySelector("#line-4-quantity").value;
+
+				const line4price = document.querySelector("#line-4-price").value;
+
+				const line4Total = line4qty * line4price;
+
+				let num4 = line4Total;
+
+				num4 = (Math.round(num4 * 100) / 100).toFixed(2);
+
+				let qty4 = "$" + num4;
+
+				document.querySelector("#line-4").innerText = qty4;
+
+				const line5qty = document.querySelector("#line-5-quantity").value;
+
+				const line5price = document.querySelector("#line-5-price").value;
+
+				const line5Total = line5qty * line5price;
+
+				let num5 = line5Total;
+
+				num5 = (Math.round(num5 * 100) / 100).toFixed(2);
+
+				let qty5 = "$" + num5;
+
+				document.querySelector("#line-5").innerText = qty5;
+
+				//Creating a variable for the subtotal and rounding to 2 decimals
+
+				const subtotalqty = line1Total + line2Total + line3Total + line4Total + line5Total;
+
+				let subtotal = subtotalqty;
+
+				let qty6 = "$" + subtotal.toFixed(2);
+
+				document.querySelector("#sub-total").innerText = qty6;
+
+				//Creating a variable for the discount and rounding to 2 decimals
+
+				const discount = subtotal * 0.10;
+
+				let discountqty = "$" + discount.toFixed(2);
+
+				const tax = subtotal - discount;
+
+				//Creating a variable for the tax and rounding to 2 decimals
+
+				const tax2 = tax * 0.12;
+
+				let taxqty = "$" + tax2.toFixed(2);
+
+				document.querySelector("#tax").innerText = taxqty;
+
+				//Creating a variable for the final total and rounding to 2 decimals
+
+				const finaltotal = subtotal - discount + tax2;
+
+				let total = "$" + finaltotal.toFixed(2);
+
+				document.querySelector("#Total").innerText = total;
+
+				// Creating variables for the if statement of the subtotal, if the subtotal is less than 250 then dont include discount
+
+				let newtotal = subtotal + tax2;
+
+				let newtotal2 = "$" + newtotal.toFixed(2); 
+				
+				if( subtotal > 250){
+
+					document.querySelector("#discount").innerText = discountqty;
+				} 
+
+				if(subtotal < 250){
+
+
+					document.querySelector("#discount").innerText = "$0.00";
+
+					document.querySelector("#Total").innerText = newtotal2;
+				}
+
+				if (subtotal < 0){
+
+
+				document.querySelector("#sub-total").innerText = "$0.00";
+				document.querySelector("#tax").innerText = "$0.00";
+				document.querySelector("#Total").innerText = "$0.00";
+
+				}
+
+	    }
+
+			Calcbutton.addEventListener("click" , calculate);
+	
+	
+    </script>
+</body>
+</html>
